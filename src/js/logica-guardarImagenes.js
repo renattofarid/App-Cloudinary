@@ -1,4 +1,3 @@
-let init = 0;
 let arrImgLength = 3;
 let filesLength = 3;
 let suma = Number(arrImgLength + filesLength);
@@ -6,7 +5,7 @@ let suma = Number(arrImgLength + filesLength);
 let arr1 = [];
 let arr2 = [];
 
-for (let i = init; i < filesLength; i++) {
+for (let i = 0; i < filesLength; i++) {
   arr1[i] = i;
   // console.log(arr1);
 }
