@@ -4,10 +4,12 @@ let arrImg = [];
 
 const divImagenes = document.querySelector("#imagenes");
 const inputFile = document.querySelector("input");
+const btnEliminar = document.querySelector("button");
 
 const crearHtmlImagen = (a) => {
-  const html = `<img id="foto${a}" width="300px" class="img-thumbnail" src="" />`;
+  const html = `<img id="foto${a}" width="450px" class="img-thumbnail" src="" />`;
   const div = document.createElement("div");
+  div.classList.add("text-center");
   div.innerHTML = html;
   divImagenes.appendChild(div);
 };
@@ -20,6 +22,7 @@ const cargaLocalStorage = () => {
   for (let j = 0; j < arrImg.length; j++) {
     const existente = arrImg[j];
     const div = document.createElement("div");
+    div.classList.add("text-center");
     div.innerHTML = existente;
     divImagenes.appendChild(div);
   }
@@ -27,6 +30,15 @@ const cargaLocalStorage = () => {
 
 const actualizarLocalStorage = () => {
   localStorage.setItem("imagenes", JSON.stringify(arrImg));
+};
+
+const eliminarLocalStorage = () => {
+  btnEliminar.addEventListener("click", (event) => {
+    localStorage.removeItem("imagenes");
+    while (divImagenes.firstChild) {
+      divImagenes.removeChild(divImagenes.firstChild);
+    }
+  });
 };
 
 const eventoCargarImagenes = () => {
@@ -66,10 +78,10 @@ const eventoCargarImagenes = () => {
       }, 2000);
     }
   });
-  // console.log(arrImg);
 };
 
 export const init = () => {
   cargaLocalStorage();
   eventoCargarImagenes();
+  eliminarLocalStorage();
 };
