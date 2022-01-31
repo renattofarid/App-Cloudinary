@@ -18,6 +18,18 @@
       <span>Sube la cantidad de imágenes que desees :)</span>
     </div>
     <hr />
+    <!-- <div class="container">      
+      <label class="input-group-text" for="inputGroupFile0">
+        PROBANDO EVENTOS INPUT
+      </label>
+      <input
+        type="file"
+        multiple
+        accept="image/png, image/jpeg"
+        class="form-control"
+        id="eventoInput"
+      />    
+    <hr> -->
     <div class="row">
       <div class="col-9">
         <label class="input-group-text" for="inputGroupFile01">
@@ -76,6 +88,7 @@
         localStorage.setItem("imagenes", JSON.stringify(arrImg));
 
         if (arrImg.length < 1) {
+          arrImg = [];
           localStorage.removeItem("imagenes");
         }
       };

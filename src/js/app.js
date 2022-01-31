@@ -5,7 +5,7 @@ let arrImg = [];
 const divImagenes = document.querySelector("#imagenes");
 const inputFile = document.querySelector("input");
 const btnEliminar = document.querySelector("button");
-const btnEliminarImagen = document.querySelector(".btn-eliminar");
+const eventoInput = document.querySelector("#eventoInput");
 
 const crearHtmlImagen = (a) => {
   const html = `<img id="foto${a}" width="450px" class="img-thumbnail" src="" />
@@ -43,6 +43,7 @@ const actualizarLocalStorage = () => {
 
 const eliminarLocalStorage = () => {
   btnEliminar.addEventListener("click", (event) => {
+    arrImg = [];
     localStorage.removeItem("imagenes");
     while (divImagenes.firstChild) {
       divImagenes.removeChild(divImagenes.firstChild);
@@ -95,6 +96,7 @@ const eventoCargarImagenes = () => {
       //   }
       //   actualizarLocalStorage();
       // }, 2000);
+      event.target.value = "";
     }
   });
 };
@@ -103,4 +105,5 @@ export const init = () => {
   cargaLocalStorage();
   eventoCargarImagenes();
   eliminarLocalStorage();
+  // evento();
 };
