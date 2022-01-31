@@ -5,11 +5,16 @@ let arrImg = [];
 const divImagenes = document.querySelector("#imagenes");
 const inputFile = document.querySelector("input");
 const btnEliminar = document.querySelector("button");
+const btnEliminarImagen = document.querySelector(".btn-eliminar");
 
 const crearHtmlImagen = (a) => {
-  const html = `<img id="foto${a}" width="450px" class="img-thumbnail" src="" />`;
+  const html = `<img id="foto${a}" width="450px" class="img-thumbnail" src="" />
+                <button id="btn${a}" onclick="eliminarElemento(this.id)" type="button" class="btn btn-eliminar">
+                <i class="fas fa-times" aria-hidden="true"></i>
+                </button>
+  `;
   const div = document.createElement("div");
-  div.classList.add("text-center");
+  div.classList.add(`text-center${a}`);
   div.innerHTML = html;
   divImagenes.appendChild(div);
 };
@@ -18,11 +23,15 @@ const cargaLocalStorage = () => {
   arrImg = localStorage.getItem("imagenes")
     ? JSON.parse(localStorage.getItem("imagenes"))
     : [];
-  console.log(arrImg);
+  // console.log(arrImg);
   for (let j = 0; j < arrImg.length; j++) {
-    const existente = arrImg[j];
+    const existente =
+      arrImg[j] +
+      `<button id="btn${j}" onclick="eliminarElemento(this.id)" type="button" class="btn btn-eliminar">
+    <i class="fas fa-times" aria-hidden="true"></i>
+    </button>`;
     const div = document.createElement("div");
-    div.classList.add("text-center");
+    div.classList.add(`text-center${j}`);
     div.innerHTML = existente;
     divImagenes.appendChild(div);
   }
@@ -42,10 +51,10 @@ const eliminarLocalStorage = () => {
 };
 
 const eventoCargarImagenes = () => {
-  inputFile.addEventListener("change", (event) => {
+  inputFile.addEventListener("change", async (event) => {
     if (arrImg) {
       const files = event.target.files;
-      console.log(files);
+      // console.log(files);
       const a = arrImg.length;
       const b = files.length;
       const suma = a + b;
@@ -67,15 +76,25 @@ const eventoCargarImagenes = () => {
         let p = pos2[x];
         crearHtmlImagen(p);
         arrImg.push(document.querySelector(`#foto${p}`));
-        subirImagen(files[o]).then((url) => (arrImg[p].src = url));
+        // subirImagen(files[o]).then((url) => (arrImg[p].src = url));
+        const url = await subirImagen(files[o]);
+        arrImg[p].src = url;
+        // console.log({ url });
       }
-      setTimeout(() => {
-        for (let y = a; y < suma; y++) {
-          const e = arrImg[y].outerHTML;
-          arrImg[y] = e;
-        }
-        actualizarLocalStorage();
-      }, 2000);
+
+      for (let y = a; y < suma; y++) {
+        const e = arrImg[y].outerHTML;
+        arrImg[y] = e;
+      }
+      actualizarLocalStorage();
+
+      // setTimeout(() => {
+      //   for (let y = a; y < suma; y++) {
+      //     const e = arrImg[y].outerHTML;
+      //     arrImg[y] = e;
+      //   }
+      //   actualizarLocalStorage();
+      // }, 2000);
     }
   });
 };

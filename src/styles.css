@@ -92,3 +92,12 @@ p{
 .img-thumbnail {
     text-align: center!important;
 }
+
+.btn-eliminar {
+    width: 100%;
+    padding: 0px;
+    margin-top: 0.5rem;
+    color: #fff;
+    background-color: #dc3545;
+    border-color: #dc3545;
+}

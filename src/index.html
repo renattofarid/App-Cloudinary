@@ -57,5 +57,28 @@
       src="https://kit.fontawesome.com/88cd56de91.js"
       crossorigin="anonymous"
     ></script>
+    <script>
+      const eliminarElemento = (id) => {
+        const idFoto = id.slice(3);
+        const divImagenes = document.querySelector("#imagenes");
+        const eliminado = document.getElementById(`foto${idFoto}`);
+        const btnDeEliminado = document.getElementById(id);
+        const contenedor = document.querySelector(`.text-center${idFoto}`);
+        const a = JSON.parse(localStorage.getItem("imagenes"));
+
+        if (eliminado.parentNode) {
+          eliminado.parentNode.removeChild(eliminado);
+          btnDeEliminado.parentNode.removeChild(btnDeEliminado);
+          contenedor.parentNode.removeChild(contenedor);
+        }
+
+        arrImg = a.filter((e) => e != eliminado.outerHTML);
+        localStorage.setItem("imagenes", JSON.stringify(arrImg));
+
+        if (arrImg.length < 1) {
+          localStorage.removeItem("imagenes");
+        }
+      };
+    </script>
   </body>
 </html>
