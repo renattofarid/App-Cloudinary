@@ -1,5 +1,5 @@
-// import { saludar } from './js/componentes';
-import { init  } from './js/app'
-import './styles.css'
+import { init, eliminarElemento } from "./js/app";
+import "./styles.css";
 
 init();
+window.eliminarElemento = eliminarElemento;

@@ -5,7 +5,6 @@ let arrImg = [];
 const divImagenes = document.querySelector("#imagenes");
 const inputFile = document.querySelector("input");
 const btnEliminar = document.querySelector("button");
-const eventoInput = document.querySelector("#eventoInput");
 
 const crearHtmlImagen = (a) => {
   const html = `<img id="foto${a}" width="450px" class="img-thumbnail" src="" />
@@ -55,7 +54,6 @@ const eventoCargarImagenes = () => {
   inputFile.addEventListener("change", async (event) => {
     if (!localStorage.getItem("imagenes")) {
       arrImg = [];
-      console.log("entre al if y mostre arreglo del evento", { arrImg });
       const files = event.target.files;
       const a = arrImg.length;
       const b = files.length;
@@ -92,13 +90,7 @@ const eventoCargarImagenes = () => {
       //   actualizarLocalStorage();
       // }, 2000);
       event.target.value = "";
-      console.log("entre al if y mostre arreglo del evento otra vez", {
-        arrImg,
-      });
     } else if (arrImg) {
-      console.log("entre al segundo if y mostre arreglo del evento", {
-        arrImg,
-      });
       const files = event.target.files;
       const a = arrImg.length;
       const b = files.length;
@@ -134,17 +126,34 @@ const eventoCargarImagenes = () => {
       //   }
       //   actualizarLocalStorage();
       // }, 2000);
-      event.target.value = "";
-      console.log("entre al segundo if y mostre arreglo del evento otra vez", {
-        arrImg,
-      });
     }
   });
+};
+
+export const eliminarElemento = (id) => {
+  const idFoto = id.slice(3);
+  const eliminado = document.getElementById(`foto${idFoto}`);
+  const btnDeEliminado = document.getElementById(id);
+  const contenedor = document.querySelector(`.text-center${idFoto}`);
+  const a = JSON.parse(localStorage.getItem("imagenes"));
+
+  if (eliminado.parentNode) {
+    eliminado.parentNode.removeChild(eliminado);
+    btnDeEliminado.parentNode.removeChild(btnDeEliminado);
+    contenedor.parentNode.removeChild(contenedor);
+  }
+
+  arrImg = a.filter((e) => e != eliminado.outerHTML);
+  actualizarLocalStorage();
+
+  if (arrImg.length < 1) {
+    arrImg = [];
+    localStorage.removeItem("imagenes");
+  }
 };
 
 export const init = () => {
   cargaLocalStorage();
   eventoCargarImagenes();
   eliminarLocalStorage();
-  // evento();
 };
