@@ -53,25 +53,22 @@ const eliminarLocalStorage = () => {
 
 const eventoCargarImagenes = () => {
   inputFile.addEventListener("change", async (event) => {
-    if (arrImg) {
+    if (!localStorage.getItem("imagenes")) {
+      arrImg = [];
+      console.log("entre al if y mostre arreglo del evento", { arrImg });
       const files = event.target.files;
-      // console.log(files);
       const a = arrImg.length;
       const b = files.length;
       const suma = a + b;
-
       let pos1 = [];
       let pos2 = [];
-
       for (let i = 0; i < b; i++) {
         pos1[i] = i;
       }
-
       for (let j = a; j < suma; j++) {
         pos2[j] = j;
         pos2 = pos2.flat();
       }
-
       for (let x = 0; x < files.length; x++) {
         let o = pos1[x];
         let p = pos2[x];
@@ -82,13 +79,11 @@ const eventoCargarImagenes = () => {
         arrImg[p].src = url;
         // console.log({ url });
       }
-
       for (let y = a; y < suma; y++) {
         const e = arrImg[y].outerHTML;
         arrImg[y] = e;
       }
       actualizarLocalStorage();
-
       // setTimeout(() => {
       //   for (let y = a; y < suma; y++) {
       //     const e = arrImg[y].outerHTML;
@@ -97,6 +92,52 @@ const eventoCargarImagenes = () => {
       //   actualizarLocalStorage();
       // }, 2000);
       event.target.value = "";
+      console.log("entre al if y mostre arreglo del evento otra vez", {
+        arrImg,
+      });
+    } else if (arrImg) {
+      console.log("entre al segundo if y mostre arreglo del evento", {
+        arrImg,
+      });
+      const files = event.target.files;
+      const a = arrImg.length;
+      const b = files.length;
+      const suma = a + b;
+      let pos1 = [];
+      let pos2 = [];
+      for (let i = 0; i < b; i++) {
+        pos1[i] = i;
+      }
+      for (let j = a; j < suma; j++) {
+        pos2[j] = j;
+        pos2 = pos2.flat();
+      }
+      for (let x = 0; x < files.length; x++) {
+        let o = pos1[x];
+        let p = pos2[x];
+        crearHtmlImagen(p);
+        arrImg.push(document.querySelector(`#foto${p}`));
+        // subirImagen(files[o]).then((url) => (arrImg[p].src = url));
+        const url = await subirImagen(files[o]);
+        arrImg[p].src = url;
+        // console.log({ url });
+      }
+      for (let y = a; y < suma; y++) {
+        const e = arrImg[y].outerHTML;
+        arrImg[y] = e;
+      }
+      actualizarLocalStorage();
+      // setTimeout(() => {
+      //   for (let y = a; y < suma; y++) {
+      //     const e = arrImg[y].outerHTML;
+      //     arrImg[y] = e;
+      //   }
+      //   actualizarLocalStorage();
+      // }, 2000);
+      event.target.value = "";
+      console.log("entre al segundo if y mostre arreglo del evento otra vez", {
+        arrImg,
+      });
     }
   });
 };

@@ -86,10 +86,12 @@
 
         arrImg = a.filter((e) => e != eliminado.outerHTML);
         localStorage.setItem("imagenes", JSON.stringify(arrImg));
+        console.log("arreglo antes de", arrImg);
 
         if (arrImg.length < 1) {
           arrImg = [];
           localStorage.removeItem("imagenes");
+          console.log("arreglo", arrImg);
         }
       };
     </script>
