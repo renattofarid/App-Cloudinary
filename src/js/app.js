@@ -7,8 +7,14 @@ const btnEliminar = document.querySelector("#eliminarTodos");
 const nickname = document.getElementById("nickname");
 const inputNick = document.getElementById("inputNick");
 const buttonAddon2 = document.getElementById("button-addon2");
-var alerta = document.getElementById("toast");
-var toast = bootstrap.Toast.getOrCreateInstance(alerta);
+const alerta = document.getElementById("toast");
+const toast = bootstrap.Toast.getOrCreateInstance(alerta);
+const alerta2 = document.getElementById("toastTodosEliminados");
+const toastTodosEliminados = bootstrap.Toast.getOrCreateInstance(alerta2);
+const alerta3 = document.getElementById("toastEliminarElemento");
+const toastEliminarElemento = bootstrap.Toast.getOrCreateInstance(alerta3);
+const alerta4 = document.getElementById("toastNickCambiado");
+const toastNickCambiado = bootstrap.Toast.getOrCreateInstance(alerta4);
 
 const cargarNickname = () => {
   if (localStorage.getItem("nickname")) {
@@ -42,6 +48,7 @@ const createNickname = () => {
         inputNick.placeholder =
           "Da un click a tu nickname para poder cambiarlo ;)";
         cargarNickname();
+        toastNickCambiado.show();
       } else {
         inputNick.disabled = true;
         inputNick.value = "";
@@ -130,10 +137,13 @@ const actualizarLocalStorage = () => {
 
 const eliminarLocalStorage = () => {
   btnEliminar.addEventListener("click", (event) => {
-    arrImg = [];
-    localStorage.removeItem("imagenes");
-    while (divImagenes.firstChild) {
-      divImagenes.removeChild(divImagenes.firstChild);
+    if (localStorage.getItem("imagenes")) {
+      arrImg = [];
+      localStorage.removeItem("imagenes");
+      while (divImagenes.firstChild) {
+        divImagenes.removeChild(divImagenes.firstChild);
+      }
+      toastTodosEliminados.show();
     }
   });
 };
@@ -207,7 +217,7 @@ const eventoCargarImagenes = () => {
 
 export const eliminarElemento = (id) => {
   const idFoto = id.slice(3);
-  const eliminado = document.getElementById(`foto${idFoto}`);
+  const eliminado = document.getElementById(`link${idFoto}`);
   const btnDeEliminado = document.getElementById(id);
   const contenedor = document.querySelector(`.text-center${idFoto}`);
   const a = JSON.parse(localStorage.getItem("imagenes"));
@@ -218,9 +228,9 @@ export const eliminarElemento = (id) => {
     contenedor.parentNode.removeChild(contenedor);
   }
 
-  arrImg = a.filter((e) => e != eliminado.outerHTML);
+  arrImg = a.filter((e) => e !== eliminado.outerHTML);
   actualizarLocalStorage();
-
+  toastEliminarElemento.show();
   if (arrImg.length < 1) {
     arrImg = [];
     localStorage.removeItem("imagenes");
