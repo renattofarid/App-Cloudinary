@@ -96,7 +96,7 @@ const createNickname = () => {
 
 const crearHtmlImagen = (a) => {
   const html = `<a id="link${a}" href="" href="" data-lightbox="repository">
-                <img id="foto${a}" width="450px" class="img-thumbnail" src="" /></a>
+                <img id="foto${a}" width="100%" class="img-thumbnail" src="" /></a>
                 <button id="btn${a}" onclick="eliminarElemento(this.id)" type="button" class="btn btn-eliminar">
                 <i class="fas fa-times" aria-hidden="true"></i>
                 </button>

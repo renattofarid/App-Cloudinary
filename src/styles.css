@@ -2,7 +2,7 @@
 
 html, body{
     padding: 1rem;    
-    background-color: rgba(200, 200, 200, 0.644);
+    background-color: rgb(200 200 200 / 13%);
     font-family: 'Poppins', sans-serif;
     width: 100%;    
     border-radius: 1rem;
@@ -22,14 +22,14 @@ h1{
 span {
     font-weight: 500;
     color: rgba(0, 0, 0, 0.678);
-    font-size:large ;
+    font-size:0.7rem ;
 }
 
 .span{
-padding: 1rem;
-border-radius: 0.5rem;
-background-color: rgba(255, 255, 255, 0.561);
-margin-top: 1rem;
+    padding: 0.5rem;
+    border-radius: 0.4rem;
+    background-color: rgb(0 72 255 / 10%);
+    margin-top: 0rem;
 }
 
 #nickname{
