@@ -14,8 +14,9 @@ img{
 }
 
 h1{
-    font-weight: 900;
+    font-weight: 400;
     font-size: xx-large;
+    color: gray;
 }
 
 span {
@@ -29,6 +30,38 @@ padding: 1rem;
 border-radius: 0.5rem;
 background-color: rgba(255, 255, 255, 0.561);
 margin-top: 1rem;
+}
+
+#nickname{
+    font-weight: 700;
+    color: black;
+}
+
+.toast {
+    width: 350px;
+    max-width: 100%;
+    font-size: .875rem;
+    pointer-events: auto;
+    background-color: rgb(0 67 255 / 61%);
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,.1);
+    box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%);
+    border-radius: 1.1rem;
+    color: white;
+    font-weight: 300;
+}
+
+.toast-header {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0.75rem;
+    color: #131313;
+    background-color: rgb(255 255 255);
+    background-clip: padding-box;
+    border-bottom: 1px solid rgba(0,0,0,.05);
+    border-top-left-radius: 1rem;
+    font-weight: 300;
+    border-top-right-radius: 1rem;
 }
 
 footer{    
