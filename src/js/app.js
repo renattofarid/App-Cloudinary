@@ -15,6 +15,8 @@ const alerta3 = document.getElementById("toastEliminarElemento");
 const toastEliminarElemento = bootstrap.Toast.getOrCreateInstance(alerta3);
 const alerta4 = document.getElementById("toastNickCambiado");
 const toastNickCambiado = bootstrap.Toast.getOrCreateInstance(alerta4);
+const alerta5 = document.getElementById("toastCargaFinalizada");
+const toastCargaFinalizada = bootstrap.Toast.getOrCreateInstance(alerta5);
 
 const cargarNickname = () => {
   if (localStorage.getItem("nickname")) {
@@ -77,6 +79,12 @@ const createNickname = () => {
     palabra = [];
     inputNick.style.display = "block";
     buttonAddon2.style.display = "block";
+    inputNick.classList.add("animate__animated");
+    inputNick.classList.add("animate__heartBeat");
+    inputNick.classList.add("animate__fast");
+    buttonAddon2.classList.add("animate__animated");
+    buttonAddon2.classList.add("animate__heartBeat");
+    buttonAddon2.classList.add("animate__fast");
     inputNick.focus();
   });
   buttonAddon2.addEventListener("click", (e) => {
@@ -103,13 +111,16 @@ const createNickname = () => {
 
 const crearHtmlImagen = (a) => {
   const html = `<a id="link${a}" href="" href="" data-lightbox="repository">
-                <img id="foto${a}" width="100%" class="img-thumbnail" src="" /></a>
-                <button id="btn${a}" onclick="eliminarElemento(this.id)" type="button" class="btn btn-eliminar">
+                <img id="foto${a}" width="100%" class="img-thumbnail animate__animated animate__fadeIn animate__delay-2s" src="" /></a>
+                <button id="btn${a}" onclick="eliminarElemento(this.id)" type="button" class="btn btn-eliminar animate__animated animate__fadeIn animate__delay-2s">
                 <i class="fas fa-times" aria-hidden="true"></i>
                 </button>
   `;
   const div = document.createElement("div");
   div.classList.add(`text-center${a}`);
+  div.classList.add("animate__animated");
+  div.classList.add("animate__heartBeat");
+  div.classList.add("animate__slow");
   div.innerHTML = html;
   divImagenes.appendChild(div);
 };
@@ -126,6 +137,9 @@ const cargaLocalStorage = () => {
     </button>`;
     const div = document.createElement("div");
     div.classList.add(`text-center${j}`);
+    div.classList.add("animate__animated");
+    div.classList.add("animate__heartBeat");
+    div.classList.add("animate__slow");
     div.innerHTML = existente;
     divImagenes.appendChild(div);
   }
@@ -181,6 +195,7 @@ const eventoCargarImagenes = () => {
       }
       actualizarLocalStorage();
       event.target.value = "";
+      toastCargaFinalizada.show();
     } else if (arrImg) {
       const files = event.target.files;
       const a = arrImg.length;
@@ -211,6 +226,7 @@ const eventoCargarImagenes = () => {
       }
       actualizarLocalStorage();
       event.target.value = "";
+      toastCargaFinalizada.show();
     }
   });
 };

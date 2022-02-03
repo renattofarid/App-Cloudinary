@@ -24,12 +24,15 @@
     <title>Repositorio-Cloudinary</title>
   </head>
   <body>
-    <h1>
+    <h1 class="animate__animated animate__bounceInDown animate__slow">
       <small>Repositorio de:</small>
       <br />
       <b id="nickname"></b>
     </h1>
-    <div class="input-group mb-3">
+    <div
+      class="input-group mb-3 animate__animated animate__bounceInDown animate__slow"
+      id="divAgregarImgs"
+    >
       <input
         type="text"
         class="form-control"
@@ -40,12 +43,12 @@
         Guardar nick
       </button>
     </div>
-    <div class="span">
+    <div class="span animate__animated animate__backInUp animate__slow">
       <span>Sube la cantidad de imágenes que desees :)</span>
     </div>
     <hr />
     <div class="row">
-      <div class="col-9">
+      <div class="col-9 animate__animated animate__backInUp animate__slow">
         <label class="input-group-text" for="inputGroupFile01">
           Cargar Imágenes
         </label>
@@ -57,7 +60,10 @@
           id="input"
         />
       </div>
-      <div class="col-3" style="display: flex">
+      <div
+        class="col-3 animate__animated animate__backInUp animate__slow"
+        style="display: flex"
+      >
         <button
           type="button"
           id="eliminarTodos"
@@ -70,12 +76,15 @@
     </div>
 
     <hr />
-    <div id="imagenes" class="container mt-5"></div>
+    <div
+      id="imagenes"
+      class="container mt-5 animate__animated animate__bounceInDown animate__slow"
+    ></div>
     <div aria-live="polite" aria-atomic="true" class="position-relative">
       <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
         <div
           id="toast"
-          class="toast hide mb-2 animate__animated animate__fadeInUp animate__fast"
+          class="toast hide mb-2 animate__animated animate__fadeInUp animate__slow"
           role="alert"
           aria-live="assertive"
           aria-atomic="true"
@@ -109,7 +118,7 @@
         </div>
         <div
           id="toastTodosEliminados"
-          class="toast hide mb-2 animate__animated animate__fadeInUp animate__fast"
+          class="toast hide mb-2 animate__animated animate__fadeInUp animate__slow"
           role="alert"
           aria-live="assertive"
           aria-atomic="true"
@@ -142,7 +151,7 @@
         </div>
         <div
           id="toastEliminarElemento"
-          class="toast hide mb-2 animate__animated animate__fadeInUp animate__fast"
+          class="toast hide mb-2 animate__animated animate__fadeInUp animate__slow"
           role="alert"
           aria-live="assertive"
           aria-atomic="true"
@@ -175,7 +184,7 @@
         </div>
         <div
           id="toastNickCambiado"
-          class="toast hide mb-2 animate__animated animate__fadeInUp animate__fast"
+          class="toast hide mb-2 animate__animated animate__fadeInUp animate__slow"
           role="alert"
           aria-live="assertive"
           aria-atomic="true"
@@ -204,6 +213,39 @@
           </div>
           <div class="toast-body" style="text-shadow: 2px 2px 4px #c5ff06">
             Nick cambiado con éxito
+          </div>
+        </div>
+        <div
+          id="toastCargaFinalizada"
+          class="toast hide mb-2 animate__animated animate__fadeInUp animate__slow"
+          role="alert"
+          aria-live="assertive"
+          aria-atomic="true"
+          style="background-color: rgba(1, 192, 26, 0.664)"
+        >
+          <div class="toast-header">
+            <svg
+              class="bd-placeholder-img rounded me-2"
+              width="20"
+              height="20"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+              preserveAspectRatio="xMidYMid slice"
+              focusable="false"
+            >
+              <rect width="100%" height="100%" fill="#a2ff00"></rect>
+            </svg>
+            <strong class="me-auto">Mensaje</strong>
+            <small>Hace: 0 segundos</small>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="toast"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="toast-body" style="text-shadow: 2px 2px 4px #c5ff06">
+            Carga exitosa
           </div>
         </div>
       </div>
